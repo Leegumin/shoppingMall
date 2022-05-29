@@ -1,4 +1,4 @@
-# showpping_mall
+# showpping_mall_front
 
 ## Project setup
 ```
