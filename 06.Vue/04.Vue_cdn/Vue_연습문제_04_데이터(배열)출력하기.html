@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    </style>
+    <script>
+        window.onload = function(){
+            new Vue({
+                el: "#app1",
+                data: {
+                    Tea: ["다즐링", "얼그레이", "실론"]
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <h2>배열로 값을 표시하는 연습문제</h2>
+    
+    <!-- 뷰 영역 -->
+    <div id="app1">
+        <!-- 배열의 값 "다즈링", "얼그레이", "실론" -->
+        <p>{{ Tea.join(", ") }}</p>
+
+        <!-- 배열의 값 중에서 첫 번째 값만 출력 -->
+        <p>{{ Tea[0] }}</p> <!-- => Js문법이 먹히므로 인덱스 값을 매겨서 출력 -->
+    </div>
+</body>
+</html>

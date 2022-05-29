@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../00.Source/css/vue_style.css">
+    <script>
+        window.onload = function(){
+                new Vue({
+                el: "#app",
+                data: {
+                    count: 0 // <p>{{count}}</p>의 값을 0으로 설정
+                },
+                methods: {
+                    countUp: function(){ //"countUp"이라는 이름의 메소드를 설정
+                        this.count++; //"this" = 이 뷰의 ".count" = 카운트 값을 수정
+                    },
+                    countDown: function(){ //"countDown"이라는 이름의 메소드를 설정
+                        this.count--; //"this" = 이 뷰의 ".count" = 카운트 값을 수정
+                    }
+                }
+        });
+    };
+    </script>
+</head>
+<body>
+    <h2>클릭하면 카운트가 올라갑니다.</h2>
+    <!-- 뷰 영역1 -->
+    <div id="app">
+        <p>{{ count }}회</p>
+        <button v-on:click="countUp">countUp</button> <!-- "v-on"으로 "click"과 뷰 정의(메소드 countUp)를 연결 -->
+        <button v-on:click="countDown">countDown</button> <!-- "v-on"으로 "click"과 뷰 정의(메소드 countDown)를 연결 -->
+    </div>
+</body>
+</html>

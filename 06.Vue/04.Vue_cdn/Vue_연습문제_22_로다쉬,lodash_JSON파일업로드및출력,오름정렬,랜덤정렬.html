@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="../00.Source/css/vue_style.css">
+<link rel="stylesheet" href="../00.Source/css/trans.css">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="//cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+<script>
+    window.onload = () => {
+        let MyComponent = {
+            props: ["object"],
+            template:
+                /* html */
+                `
+                <div style="width: 300px; backgroundColor: #ffddaa;">
+                    <p style="backgroundColor:#ffa95e"> {{ object.title }}</p>
+                    <p>해설 : {{ object.body }} </p>
+                </div>
+                `
+        }
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    dataArray: [
+                        { title: "AAA", body: "aaa" },
+                        { title: "BBB", body: "bbb" },
+                        { title: "CCC", body: "ccc" }
+                    ],
+
+                }
+            },
+            components: {
+                "my-product": MyComponent
+            },
+            methods: {
+                //목록 정렬
+                sortData() {
+                    this.dataArray = _.orderBy(this.dataArray, "title", "asc")
+                },
+                //목록 셔플
+                shuffleData() {
+                    this.dataArray = _.shuffle(this.dataArray)
+                },
+                // JSON 파일 업로드해서 객채배열로 지정
+                loadData(event) {
+                    let file = event.target.files[0];
+                    if (file) {
+                        //텍스트 또는 JSON 파일 읽어들이는 객체
+                        let reader = new FileReader();
+                        let vm = this;
+
+                        // 텍스트로 JSON 파일을 읽어들이는 함수
+                        reader.readAsText(file);
+
+                        reader.onload = function (event) {
+                            vm.dataArray = JSON.parse(event.target.result) //parse 문자열 -> 객체로 변경
+                        }
+                    }
+                }
+            }
+        })
+    }
+</script>
+
+<body>
+    <h2>JSON 파일을 읽어들여 트렌지션 효과를 주는 예제</h2>
+    <div id="app">
+        <transition-group>
+            <div v-for="item in dataArray" :key="item.title">
+                <my-product :object="item"></my-product>
+            </div>
+        </transition-group>
+
+        <button @click="sortData">정렬</button>
+        <button @click="shuffleData">셔플</button>
+        <input type="file" @change="loadData">
+    </div>
+</body>
+
+</html>

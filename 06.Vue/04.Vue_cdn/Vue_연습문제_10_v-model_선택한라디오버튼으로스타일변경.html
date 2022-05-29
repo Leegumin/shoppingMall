@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../00.Source/css/vue_style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        window.onload = () => {
+            new Vue({
+                el:"#app",
+                data: {
+                    inp_Name: "",
+                    radi_Color: ""
+                }
+            })
+        }
+    </script>
+    <style>
+        b {
+            padding: 5px
+        }
+    </style>
+</head>
+<body>
+    <h2>입력폼 활용</h2>
+    <!-- 뷰 영역 -->
+    <div id="app">
+        이름 : <input type="text" v-model.lazy="inp_Name">
+        <!-- input box를 lazy 속성으로 생성 -->
+        <br>
+        좋아하는 색은 : <br>
+        <label>
+            <!-- input type를 radio 생성하고 value는 green -->
+            <input type="radio" v-model="radi_Color" value="green">green
+        </label><br>
+        <label>
+            <!-- input type를 radio 생성하고 value는 blue -->
+            <input type="radio" v-model="radi_Color" value="skyblue">skyblue
+        </label><br>
+        <label>
+            <!-- input type를 radio 생성하고 value는 yellow -->
+            <input type="radio" v-model="radi_Color" value="yellow">yellow
+        </label><br>
+        <label>
+            <!-- input type를 radio 생성하고 value는 gray -->
+            <input type="radio" v-model="radi_Color" value="gray">gray
+        </label><br>
+        <p>내 이름은 {{inp_Name}}이고, 좋아하는 색은 <b :style="{backgroundColor: radi_Color}">{{radi_Color}}</b>입니다.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../00.Source/css/vue_style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        window.onload = function(){
+            new Vue({
+                el: "#app",
+                data: {
+                    v_src: ""
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <h2>이미지 출력을 라디오버튼으로 변경하는 예제</h2>
+    <div id="app">
+        <label>
+            <input type="radio" value="../00.Source/img/boy.png" v-model="v_src">빨강
+        </label>
+        <br>
+        <label>
+            <input type="radio" value="../00.Source/img/girl.png" v-model="v_src">녹색
+        </label>
+        <br>
+        <!-- img src v-bind 변수를 넣어서 라디오 버튼을 클릭할 때 마다 -->
+        <!-- 이미지가 화면에 바껴서 출력 -->
+        <img v-bind:src="v_src"></img>
+        <img src="v_src" alt="">
+    </div>
+</body>
+</html>

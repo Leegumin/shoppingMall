@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+</head>
+<body>
+    <p>첫 번째 뷰 입니다.</p>
+    <div id="app">
+        {{ message }} <!-- {{}}안에 들어간 message를 변경함 -->
+    </div>
+
+    <p>두 번째 뷰 입니다.</p>
+    <div id="app2">
+        {{ message }} <!-- {{}}안에 들어간 message를 변경함 -->
+    </div>
+
+    <p>세 번째 뷰 입니다.</p>
+    <div id="app3">
+    </div>
+
+    <script>
+        new Vue({ //첫 번째 뷰
+            el: "#app",
+            data: {
+                message: "아뇽아뇽 아뇨오로로로옹"
+            }
+        });
+
+        new Vue({ //두 번째 뷰
+            el: "#app2",
+            data: {
+                message: "뫄....헛"
+            }
+        })
+
+        new Vue({ //세 번째 뷰
+            el: "#app3",
+            data: {
+                message: "template기능으로 만들었냥"
+            },
+            template: "<h3>{{message}}</h3>" //template에는 html 요소를 넣을 수 있음
+        });
+    </script>
+</body>
+</html>

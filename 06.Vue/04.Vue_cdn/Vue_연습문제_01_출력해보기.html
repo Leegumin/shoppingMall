@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+</head>
+<body>
+    <div id="app">
+        <h2>데이터 바인딩1</h2>
+        <span>{{ message }}</span>
+        <br><br>
+        <h2>데이터 바인딩2</h2>
+        <span>{{ num*num }}</span>
+        <br><br>
+        <h2>데이터 바인딩3</h2>
+        <span>{{ tOf? "맞습니다":"틀립니다" }}</span>
+        <br><br>
+    </div>
+    <script>
+        //첫번째 라인은 "안녕하세요 이구민입니다"
+        //두번째 라인은 숫자의 제곱을 출력
+        //세번째 라인은 변수가 참이면 "맞습니다." 거짓이면 "틀립니다."
+        let app = new Vue({
+            el: "#app",
+            data: {
+                message: "안녕하세요 이구민입니다.",
+                num: 15,
+                tOf: false,
+            }
+        });
+
+    </script>
+</body>
+</html>

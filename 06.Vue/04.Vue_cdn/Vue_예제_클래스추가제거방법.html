@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .item {
+            padding: 4px 8px;
+            transition: background-color 0.4s;
+        }
+
+        .is-active {
+            background: #ffeaea;
+        }
+    </style>
+    <script>
+        window.onload = ()=> {
+            new Vue({
+                el: "#app",
+                data: {
+                    isChild: true,
+                    isActive: true,
+                    textColor: "red",
+                    bgColor: "lightgray"
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <!-- 뷰 영역 -->
+    <div id="app">
+       <button @click="isActive = !isActive">isActive 변경하기</button> 
+       <p :class="{ child: isChild, 'is-active': isActive }" class="item"> <!-- 클래스명: 연결데이터 -> 연결데이터의 참,거짓 값에 따라 클래스가 생성, 삭제됨-->
+           동적클래스
+       </p>
+       <p :style="{ color:textColor, backgroundColor:bgColor }" class="item"></p>
+    </div>
+</body>
+</html>

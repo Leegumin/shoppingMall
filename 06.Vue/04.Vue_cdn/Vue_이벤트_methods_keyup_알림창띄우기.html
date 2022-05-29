@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        window.onload = () => {
+            new Vue({
+                el: "#app",
+                data: {
+                    myText: "Hello",
+                },
+                methods: {
+                    showAlert(){
+                        alert("Enter키가 눌렸습니다.");
+                    },
+                    showAlert2(){
+                        alert("Enter + shift 키가 눌렸습니다.");
+                    }
+                },
+            })
+        }
+    </script>
+</head>
+<body>
+    <h2>Enter 키를 누르면 얼럿을 표시하는 예제</h2>
+    <div id="app">
+        <input @keyup.enter="showAlert" v-model="myText"> <!-- 인풋 안에서 Enter가 눌렸을때(keyup.enter) -->
+        <input @keyup.enter.shift="showAlert2" v-model="myText"> <!-- 인풋 안에서 Enter + shift가 눌렸을때(keyup.enter.shift) -->
+        <p></p>
+    </div>
+</body>
+</html>

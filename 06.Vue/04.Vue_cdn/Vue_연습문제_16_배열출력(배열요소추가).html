@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        window.onload = () =>{
+            new Vue({
+                el: "#app",
+                data: {
+                    //객체배열
+                    //id: 1, name: "슬라임", hp: 100
+                    //id: 2, name: "고블린", hp: 200
+                    //id: 3, name: "드래곤", hp: 500
+                    //버튼 클릭시 데이터 추가
+                    //id : 10, name: "골드드래곤", hp: 1000
+                    list: [
+                        {id: 1, name: "슬라임", hp: 100},
+                        {id: 1, name: "고블린", hp: 200},
+                        {id: 1, name: "드래곤", hp: 500},
+                    ],
+                },
+                methods: {
+                    addList(){
+                        this.list.push({id : 10, name: "골드드래곤", hp: 1000})
+                    }
+                },
+            })
+        }
+    </script>
+     <style>
+        .strong {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 뷰영역 -->
+    <div id="app">
+        <!-- 아래 데이터를 목록을 만들어서 출력하세요 -->
+        <ul>
+            <li v-for="a in list" :class = "{strong: a.hp > 300}" :key="a.id">{{a}}<span v-if="a.hp > 300">강하다!</span></li>
+            
+            <li v-for="a in list" :class = "{strong: a.hp > 300}" :key="a.id">ID: {{a.id}} {{a.name}} {{a.hp}} <span v-if="a.hp > 300">강하다!</span></li>
+            
+            <button @click="addList">데이터 추가하기</button>
+        </ul>
+    </div>
+</body>
+</html>

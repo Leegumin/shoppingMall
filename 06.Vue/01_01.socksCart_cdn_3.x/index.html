@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- vue 3.x CDN -->
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="nav-bar"></div>
+
+      <!-- 장바구니 카운트 수치 -->
+      <div class="cart">Cart: {{ cart.length }}</div>
+
+      <!-- 상품정보 부분 -->
+      <product-display
+        @add-to-cart="updateCart"
+        @remove-from-cart="removeById"
+        :premium="prem"
+      />
+    </div>
+
+    <!-- Import Js -->
+    <script src="./assets/util/main.js"></script>
+    <script src="./assets/util/ProductDisplay.js"></script>
+    <script src="./assets/util/ProductDetails.js"></script>
+    <script src="./assets/util/ReviewForm.js"></script>
+    <script src="./assets/util/ReviewList.js"></script>
+
+    <!-- Mount App -->
+    <script>
+      // main.js의 const app를 호출하여 #app에 연결
+      //const mountedApp =  굳이 이렇게 지정 안해줘도 됨
+      const mountedApp = app.mount("#app");
+    </script>
+  </body>
+</html>

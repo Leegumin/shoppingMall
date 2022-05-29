@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown.js/0.6.0-beta1/markdown.min.js"></script> -->
+    <script>
+        window.onload = () => {
+            //this 정리
+            //1. 그냥 씀
+            console.log("1번 그냥 씀")
+            let x = this;
+            console.log(x);
+
+            //2. 함수 안에서 쓰는 this
+            console.log("2번 함수 안에서 씀")
+            function myFunction() {
+                return this;
+            }
+            console.log(myFunction())
+
+
+            //3. 함수 안에서 쓰는 this
+            console.log("3번 객체의 메소드로 씀")
+            let person = {
+                firstName: "John",
+                lastName: "Doe",
+                fullName: function () {
+                    return this.firstName + " " + this.lastName;
+                }
+            }
+            console.log(person.fullName())
+
+            //4. 함수 안에서 쓰는 this
+            console.log("4번 이벤트의 메소드로 씀")
+            let btn = document.querySelector("#btn");
+            btn.addEventListener("click", function () {
+                console.log("click");
+                console.log(this);
+            })
+
+            //5. 객체 생성자에서 쓴 this
+            // 객체 생성자 정의
+            console.log("5번 객체 만드는데 생성자 형태로 만듬")
+            function Person5 (name) {
+                this.name = name
+                console.log(this)
+            }
+            // 객체 생성자 함수 호출하여 생성
+            let kim = new Person5("kim")
+            let lee = new Person5("lee")
+
+            console.log(kim.name)
+            console.log(lee.name)
+
+            // 6. 화살표 함수의 this
+            // 객체 생성자 정의
+            // 함수안의 함수 형태에서는 this가 window가 됨
+            // 에러 : undefined
+            console.log("6번 화살표 함수에서의 this")
+            //객체를 만드는 함수에서는 화살표 함수를 안쓰느게 좋음
+            // let Person6 = function(name, age){
+            //     this.name = name;
+            //     this.age = age;
+            //     this.say = function(){
+            //         console.log(this)
+
+            //         setTimeout(function() {
+            //             console.log(this);
+            //             console.log(this.name + " is " + this.age + " years old"); //window가 된 this
+            //         }, 1000);
+            //     };
+            // }
+            // // 객체 생성자 함수 호출하여 생성
+            // let me = new Person6("Nana", 28)
+
+            // me.say()
+
+            //해결책은 일반 함수를 화살표 함수로 고치는 것임
+            //객체를 만드는 함수에서는 화살표 함수를 안쓰느게 좋음
+            let Person6 = function (name, age) {
+                this.name = name;
+                this.age = age;
+                this.say = function () {
+                    console.log(this)
+
+                    setTimeout(() => {
+                        console.log(this);
+                        console.log(this.name + " is " + this.age + " years old"); //window가 된 this
+                    }, 1000);
+                };
+            }
+            // 객체 생성자 함수 호출하여 생성
+            let me = new Person6("Nana", 28)
+
+            me.say()
+        }
+
+    </script>
+</head>
+
+<body>
+    <p>this에 대해서 알아보기 </p>
+    <button id="btn">4번 버튼</button>
+</body>
+
+</html>

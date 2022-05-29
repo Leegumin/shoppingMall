@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    </style>
+    <script>
+        window.onload = function(){
+            new Vue({
+                el: "#app",
+                data: {
+                    myURL: "http://www.google.com",
+                    myAlign: "right",
+                    flieName: "../00.Source/img/girl.png"
+                },
+            })
+        }
+
+    </script>
+</head>
+<body>
+    <h2>링크를 지정하는 예제</h2>
+    <!-- 뷰 영역 -->
+    <div id="app">
+        <a href="http://www.naver.com">링크를 직접지정</a>
+        <a v-bind:href="myURL">v-bind 링크를 지정</a>
+        <hr>
+        <p align="right">우측정렬 직접 지정</p>
+        <p v-bind:align="myAlign">v-bind 우측정렬 지정</p>
+        <hr>
+        <img src="../00.Source/img/boy.png" alt="쏘년">직접지정
+        <img v-bind:src = "flieName" alt="쏘녀">v-bind로 지정
+    </div>        
+        
+
+</body>
+</html>

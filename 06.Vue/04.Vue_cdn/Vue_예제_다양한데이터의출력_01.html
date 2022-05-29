@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    </style>
+    <script>
+        window.onload = function(){
+            new Vue({
+                el: "#app1",
+                data: {
+                    myText: "<h3>Vue를 배워 봅시다. 이렇게 그냥 출력할 수도 있고</h3>, (물론 일반출력이나, v-text는 HTML 요소를 텍스트 출력합니다)",
+                    myHTMLText: "<h3>태그를 넣어서 출력할 수도 있습니다.(하지만 v-html은 HTML 요소를 적용시켜 출력합니다)</h3>",
+                    myNumber: 12345,
+                    myBool: true,
+                    myArray: [1,2,3,4,5],
+                    myObject: [
+                        { name: "다즐링", price: 600 },
+                        { name: "얼그레이", price: 500 },
+                        { name: "실론", price: 500 }
+                    ]
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+<!-- 뷰 영역 -->
+    <div id="app1">
+        <p>{{ myText }}</p>
+        <p v-text="myText"></p>
+        <p v-html="myHTMLText"></p>
+        <p>숫자 {{ myNumber }}</p>
+        <p>부울형 {{ myBool }}</p>
+        <p>배열 {{ myArray }}</p>
+        <p>오브젝트 {{ myObject }}</p>
+        <p>데이터{{ $data }}</p>
+    </div>
+</body>
+</html>

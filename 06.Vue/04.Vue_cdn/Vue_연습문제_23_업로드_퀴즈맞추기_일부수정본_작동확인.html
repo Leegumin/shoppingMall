@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="../00.Source/css/vue_style.css">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="//cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+
+<script>
+    window.onload = () => {
+        let MyQuiz = {
+            props: ["object"],
+            template:
+                /* html */
+            `
+            <div style="width:600px;backgroundColor:#ffddaa;">
+                <p style="backgroundColor: #ffa95e">
+                    문제 {{ object.no }} {{ object.question }}  (배점: {{ object.point }})
+                </p>
+                정답 : 
+                <input type="radio" v-model="object.user_answer" value="true"> 0 &nbsp;
+                <input type="radio" v-model="object.user_answer" value="false"> X &nbsp;
+            </div>
+            `
+        }
+
+        // 부모 뷰 생성
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    // quiz.json 읽어들여서 배열에 저장할 변수
+                    dataArray: [],
+
+                    // 정답버튼을 보이게 하기 위한 변수
+                    show: false,
+                    // 총득점버튼을 보이게 하기 위한 변수
+                    showResult: false,
+                    // 총득 변수
+                    score: 0,
+
+                }
+            },
+            components: {
+                "my-quiz" : MyQuiz
+            },
+            methods: {
+                // JSON 파일 읽어들이는 함수
+                // JSON파일을 읽어들이면 정답버튼이 보여야함
+                loadData(event) {
+                    let file = event.target.files[0];
+                    if (file) {
+                        //텍스트 또는 JSON 파일 읽어들이는 객체
+                        let reader = new FileReader();
+                        let vm = this;
+                        // let json;
+
+                        // 텍스트로 JSON 파일을 읽어들이는 함수
+                        reader.readAsText(file);
+
+                        reader.onload = function (event) {
+// dataArray -> vm.dataArray 로 수정
+                            vm.dataArray = JSON.parse(event.target.result) //parse 문자열 -> 객체로 변경
+                        }
+                    }
+                    this.show = true
+                },
+                // 1. dataArray에 들어있는 문제 개수만큼 반복문을 실행
+                // 2. dataArray에 user_answer 값과 실제 답인 answer이 일치하면
+                // score에 point 값을 반영
+                // 3. 총득점 부분을 화면에 보이게 함
+                answerQuestion: function(){
+
+                }
+            }
+        })
+    }
+</script>
+
+<body>
+    <h2>퀴즈 맞추기</h2>
+    <!-- dataArray의 item 항목을 반복해서 화면에 출력 -->
+    <div id="app">
+        <div v-for="item in dataArray" :key="item.title">
+            <!-- 자식 컴포넌트의 object 속성에 item 데이터를 전송 -->
+            <my-quiz :object="item"></my-quiz>
+        </div>
+        <br>
+<!-- answerQuestion 오타 -->
+        <button v-if="show" @click="answerQuestion">정답 제출하기</button>
+        <br>
+        <p v-if="showResult">총득점: {{ score }}</p>
+        <!-- quiz.json 파일을 읽어들일 부분 -->
+        <p><input type="file" @change="loadData"></p>
+    </div>
+</body>
+
+</html>

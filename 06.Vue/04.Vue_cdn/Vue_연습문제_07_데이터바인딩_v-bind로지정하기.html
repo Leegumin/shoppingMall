@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    </style>
+    <script>
+        window.onload = function(){
+            new Vue({
+                el: "#app",
+                data: {
+                    v_href: "http://www.naver.com",
+                    v_src: "../00.Source/img/boy.png",
+                    v_align_L: "left",
+                    v_align_R: "right",
+                    v_align_C: "center",
+                    v_Color_red: "red",
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <!-- 뷰 영역 -->
+    <div id="app">
+    <!--1. 네이버 연결  -->
+    <p><a href="http://www.naver.com">직접 링크</a></p>
+    <p><a v-bind:href="v_href">v-bind 링크</a></p>
+    <p><a :href="v_href">v-bind단축식 링크</a></p>
+    <hr>
+    <!--2. 이미지 표시  -->
+    <p><img src="../00.Source/img/boy.png">직접 이미지 표시</p>
+    <p><img v-bind:src="v_src">v-bind 이미지 표시</p>
+    <p><img :src="v_src">v-bind단축식 이미지 표시</p>
+    <hr>
+    <!--3. 텍스트를 왼쪽 정렬  -->
+    <p align="left">직접 왼쪽 정렬</p>
+    <p v-bind:align="v_align_L">v-bind 왼쪽 정렬</p>
+    <p :align="v_align_L">v-bind단축식 왼쪽 정렬</p>
+    <hr>
+    <!--4. 텍스트를 가운데 정렬  -->
+    <p align="center">직접 가운데 정렬</p>
+    <p v-bind:align="v_align_C">v-bind 가운데 정렬</p>
+    <p :align="v_align_C">v-bind단축식 가운데 정렬</p>
+    <hr>
+    <!--5. 텍스트를 오른쪽 정렬  -->
+    <p align="right">직접 오른쪽 정렬</p>
+    <p v-bind:align="v_align_R">v-bind 오른쪽 정렬</p>
+    <p :align="v_align_R">v-bind단축식 오른쪽 정렬</p>
+    <hr>
+    <!--6. color를 red로 바꾸는데 v-bind 사용  -->
+    <p style="color: red">직접 인라인을 이용해서 글자색을 빨간색으로</p>
+    <p v-bind:style="{color: v_Color_red}">v-bind 인라인을 이용해서 글자색을 빨간색으로</p>
+    <p :style="{color: v_Color_red}">v-bind단축식 인라인을 이용해서 글자색을 빨간색으로</p>
+    <hr>
+</div>
+</body>
+</html>

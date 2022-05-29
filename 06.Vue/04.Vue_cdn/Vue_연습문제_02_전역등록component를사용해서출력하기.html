@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <!-- html -->
+    <div id="app">
+        <!-- header component 위치 -->
+        <header-component></header-component>
+        <!-- body component 위치 -->
+        <body-component></body-component>
+        <!-- footer component 위치 -->
+        <footer-component></footer-component>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app"
+        });
+        
+        //컴포넌트 정의
+        //header 컴포넌트
+        Vue.component("header-component", { //component로 등록되자마자 등록된 이름으로 태그 사용가능
+            // html처럼 보이게 만들어주는 확장앱 기능 /* html */ 사용시 작동
+            /* html */ 
+            template:
+             `
+                <div class="header">
+                    <p><h4>저으 블로그 사이트에 오신 것을 환영합니다으.</h4></p>
+                </div>
+             `
+        });
+
+        //body 컴포넌트
+        Vue.component("body-component", { //component로 등록되자마자 등록된 이름으로 태그 사용가능
+            template: "<div>몸통 부분입니다.</div>"
+        });
+        //footer 컴포넌트
+        Vue.component("footer-component", { //component로 등록되자마자 등록된 이름으로 태그 사용가능
+            template: "<div>꼬리말입니다.</div>"
+        });
+        //전역 등록은 등록된 이름으로 태그생성이 가능하여 해당태그가 있는 위치에서 전부 작용
+    </script>
+</body>
+</html>

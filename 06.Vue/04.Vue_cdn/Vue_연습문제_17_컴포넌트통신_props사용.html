@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        window.onload = ()=>{
+            Vue.component("child-component", {
+                props: ["propsdata"],
+                template: "<p>{{ propsdata }}</p>"
+            })
+
+            //또 다른 자식 컴포넌트를 추가
+            Vue.component("child-component2", {
+                props: ["propsdata"],
+                template: "<p>{{ propsdata }}</p>"
+            })
+
+            let app = new Vue({
+                el: "#app",
+                data: {
+                    message: "Hello Vue! passed from Parent Component",
+                    
+                    //또 다른 변수를 생성 : "Another Hello Vue!"
+                    message2: "Another Hello Vue!"
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div id="app">
+        <child-component :propsdata="message"></child-component>
+
+        <!-- 아래에 또 다른 자식 컴포넌트를 생성 -->
+        <child-component2 :propsdata="message2"></child-component>
+    </div>
+</body>
+</html>

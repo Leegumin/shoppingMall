@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown.js/0.6.0-beta1/markdown.min.js"></script> -->
+    <script>
+        window.onload = () => {
+            //라이프사이클의 경우 data의 중복과 달리 중복해서 실행가능함
+
+            //mixin 객체 생성
+            let Mixin = {
+                methods: {
+                    foo() {
+                        console.log("foo")
+                    },
+                    conflicting() {
+                        console.log("mixin에서 conflicting 실행")
+                    }
+                },
+            }
+
+            //mixin을 사용할 컴포넌트 정의
+            let vm = new Vue({
+                mixins: [Mixin],
+                methods: {
+                    bar() {
+                        console.log("bar")
+                    },
+                    // mixin과 중복된 함수
+                    conflicting() {
+                        console.log("Vue에서 conflicting 실행")
+                    }
+                },
+            })
+            // mixin에서 만든 foo 함수 호출
+            vm.foo();
+            // mixin에서 만든 bar 함수 호출
+            vm.bar();
+            // mixin에서 만든 conflicting 함수 호출
+            vm.conflicting();
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <p>mixin 간단 예제</p>
+
+</body>
+
+</html>

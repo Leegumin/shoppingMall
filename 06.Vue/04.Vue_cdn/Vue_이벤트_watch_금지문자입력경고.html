@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        window.onload = () => {
+            new Vue({
+                el: "#app",
+                data: {
+                    forbiddendText: "안돼",
+                    inputText: "오늘은 날씨가 좋습니다."
+                },
+                //입력한 문자를 감시함
+                watch: {
+                    inputText(){ //해당하는 data이름으로 펑션을 만들어야 하며 해당하는 data에서 자료를 찾아야하기 때문에 이름이 증복해서 들어감
+                        //아래 문자열에서 금지어를 찾으면 양수
+                        //못찾으면 음수
+                        let pos = this.inputText.indexOf(this.forbiddendText); //forbiddendText(금지어)가 있는지 검색함. 위에서 언급한바와 같이 양수, 음수 값 출력
+                        if(pos >= 0) {
+                            alert(this.forbiddendText + "는 입력할 수 없습니다."); //금지어의 유무에 따라 추출된 값 pos에 따라 알림창이 나오든가 안나오든가
+                            this.inputText = this.inputText.substr(0, pos); //인덱스 0에서 pos가 시작하기 전 범위까지만 추출해서 다시 입력
+                        }
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <h2>입력문자를 감시하여 금지문자가 입력되면 얼럿을 띄우는 예제</h2>
+    <div id="app">
+        <p>금지문자는 [ {{ forbiddendText }} ]</p>
+        <textarea v-model="inputText"></textarea>
+    </div>
+</body>
+</html>

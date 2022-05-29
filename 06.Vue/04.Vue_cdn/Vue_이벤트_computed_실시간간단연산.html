@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    </style>
+    <script>
+        //"computed"는 객체와 직접적으로 연결된 값이 변경될 경우 자동으로 정의된 함수를 불러옴
+        window.onload = function(){
+            let calc = new Vue({
+                el: "#app1",
+                data: {
+                    x: 0,
+                    y: 0,
+                    lastResult: 0
+                },
+                computed: {
+                    result: function() {
+                         this.lastResult = Number(this.x) + Number(this.y);
+                         return this.lastResult; //출력된 값을 "result"로 반환
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<!-- 뷰 영역 -->
+    <div id="app1">
+        <p>x <input v-model="x"></p> <!-- 초기 값은 뷰영역에서 0으로 설정해놨으나 input 값이 들어가면 v-model이 감지하여 뷰영역에 재반영하여 값을 설정 -->
+        <p>y <input v-model="y"></p>
+        <p>---------------------</p>
+        <p>=<span v-text="result"></span></p> <!-- "computed"로 연결된 기능이 실행될 위치 -->
+    </div>
+</body>
+</html>

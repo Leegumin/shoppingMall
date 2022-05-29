@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        window.onload = () => {
+        //전역 컴포넌트 설정
+            Vue.component("child-component", { //태그 추가
+                //2. 속성을 정의
+                props: ["data"],  //컴포넌트 간의 통신을 위한 명령어, [정의할 속성]
+
+                //3. 출력할 HTML 설정
+                template: "<div class='box'>{{ data }}</div>" //{{ props에서 설정한 data가 들어와야 작동함 }}
+            })
+
+        //부모 컴포넌트
+            let app_comp = new Vue ({
+                el: "#app",
+                data: {
+                     //1. 데이터 정의
+                    name: "props를 이용한 데이터 전달",
+                    message: "부모 컴포넌트로부터 전달"
+                },
+            });
+        }
+    </script>
+    <style>
+        #app {
+            background: blue;
+            padding: 6px;
+            color: white;
+        }
+        .box {
+            background: teal;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        {{ name }}
+    <!-- props를 이용해서 자식 컴포넌트에 message를 전달해서 출력해보세요 -->
+        <!-- 4. data는 부모 컴포넌트의 data안에 있는 message 객체를 끌어오기로 함 -->
+        <child-component :data="message"></child-component>
+    </div>
+</body>
+</html>

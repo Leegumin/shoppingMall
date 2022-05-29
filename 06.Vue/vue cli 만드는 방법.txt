@@ -1,0 +1,16 @@
+node.js 설치,
+GitBash 설치
+
+#vue install
+$ npm install vue
+
+# vue cli install
+npm install -g @vue/cli @vue/cli-service-global
+
+# vue create 프로젝트명(전부소문자만가능)
+vuex
+router
+설치
+
+전부 y
+마지막 preset저장 n

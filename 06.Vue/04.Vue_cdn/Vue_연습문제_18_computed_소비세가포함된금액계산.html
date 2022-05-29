@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        window.onload = ()=>{
+            new Vue({
+                el: "#app",
+                data: {
+                    price: 0,
+                    count: 0
+                },
+                computed: {
+                    //세금이 포함된 금액으로 변환시켜주는 펑션
+                    taxIncluded(){
+                        return this.price * 1.08; //8퍼센트의 세금 -> *1.08
+                    }
+                }
+            });
+        }
+    </script>
+<body>
+    <h2>금액을 입력하면 소비세가 포함된 금액을 계산하는 예제</h2>
+    <div id="app">
+        <input type="number" v-model.number="price">원
+        <!-- 1. 개수를 표시하는 입력 박스 추가 -->
+        <input type="number" v-model.number="count">개
+        <!-- 2.개수를 포함한 총 가격 표시 -->
+        <p>소비세 포함 금액 {{ taxIncluded }}원 </p>
+        <p>물건 개수 {{ count }}개 </p>
+        <p>총 합계금액 {{ taxIncluded*count }}개 </p>
+    </div>
+</body>
+</html>

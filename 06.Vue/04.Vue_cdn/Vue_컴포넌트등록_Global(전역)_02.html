@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .component {
+            background: #01579b;
+            color: white;
+            padding: 10px 20px;
+            margin-bottom: 5px;
+        }
+
+        .article {
+            background: #00897b;
+            color: white;
+            padding: 10px 20px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <child-component></child-component>
+        <child-article></child-article>
+    </div>
+    <script>
+        //전역 등록은 등록된 이름으로 태그생성이 가능하여 해당태그가 있는 위치에서 전부 작용
+        Vue.component("child-component", {
+            template:
+            /* html */
+            `
+                <div class = "component">
+                    <p>ChildComponent입니다.</p>
+                </div>
+            `
+        });
+        
+        Vue.component("child-article", {
+            template:
+            /* html */
+            `
+                <div>
+                    <div class = "article">
+                        <p>Child-article입니다.<p>
+                        <child-component></child-component>
+                    </div>
+                </div>
+            `
+        });
+
+
+        new Vue({
+            el: "#app",
+        });
+
+    </script>
+</body>
+</html>

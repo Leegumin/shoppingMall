@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .strike-throught {
+            text-decoration: line-through;
+            color: lightgray;
+        }
+
+        .dark {
+            background-color: gray;
+        }
+
+        .cl1 {
+            color: red;
+        }
+        .cl2 {
+            background-color: blue;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            new Vue({
+                el: "#app",
+                data: {
+                    myClass: "strike-throught",
+                    darkClass: "dark",
+                    isON: true
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+        <div id="app">
+            <p class="strike-throught">직접 클래스 지정</p>
+            <p v-bind:class="myClass">v-bind 클래스 지정</p>
+            <p v-bind:class="[myClass, darkClass]">v-bind 복수 클래스 지정</p> <!-- 클래스를 복수지정할 때는 배열로 들어감 -->
+            <p v-bind:class="{'strike-throught': isON}">v-bind 데이터로 클래스 ON/OFF 클래스</p>
+
+            <p class="cl1 cl2 cl3">냥냥</p> <!-- 일반적으로 클래스 복수지정 방법 -->
+        </div>
+
+</body>
+</html>

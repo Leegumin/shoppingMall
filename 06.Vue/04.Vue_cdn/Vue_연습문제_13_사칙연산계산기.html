@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../00.Source/css/vue_style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        window.onload = function(){
+            new Vue({
+                el:"#app",
+                data: {
+                    result: 0,
+                    num1: 0,
+                    num2: 0
+                },
+                methods: {
+                    addcal(){
+                        this.result = this.num1 + this.num2 //this를 붙이면 data의 요소로 접근이 가능함
+                    },
+                    subcal(){
+                        this.result = this.num1 - this.num2
+                    },
+                    multical(){
+                        this.result = this.num1 * this.num2
+                    },
+                    divcal(){
+                        this.result = this.num1 / this.num2
+                    }
+                },
+            })
+        }
+    </script>
+</head>
+<body>
+    <h2>간단한 계산기</h2>
+    <div id="app">
+        <!-- 숫자 입력박스 -->
+        <input type="number" v-model.number="num1"> <!-- v-model.number -> num1을 문자열이 아닌 숫자로 저장함 -->
+        <!-- 숫자 입력박스 -->
+        <input type="number" v-model.number="num2">
+        <br><br>
+        <button @click="addcal()">덧셈</button> <!-- 뒤에 ()를 붙이면 실행함 -->
+        <button @click="subcal">뺄셈</button> <!-- 뒤에 ()를 생략해도 실행함 -->
+        <button @click="multical()">곱셈</button>
+        <button @click="divcal">나눗셈</button>
+        <!-- 결과 출력 -->
+        <p>{{ result }}</p>
+    </div>
+</body>
+</html>

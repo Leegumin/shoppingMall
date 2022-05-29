@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <link rel="stylesheet" href="../00.Source/css/vue_style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script>
+        window.onload = () => {
+            new Vue({
+                el: "#app",
+                data: {
+                    show: true
+                }
+            })
+        }
+    </script>
+    <style>
+        /* 1초 동안 투명도, 위치 변화 */
+        .v-enter-active, .v-leave-active {
+            transition: opacity 1s, transform 1s;
+        }
+        /* 출력할때는 왼쪽에서 오른쪽으로 이동 */
+        .v-enter {
+            opacity: 0;    
+            transform: translateX(-10px);
+        }
+        /* 사라질때는 아래로 */
+        .v-leave-to {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+    </style>
+<body>
+    <div id="app">
+        <p><button @click="show=!show">변경하기</button></p>
+        <transition>
+        <div v-show="show">
+            <img src="../00.Source/img/boy.png" alt="소년 이미지가 없습니다.">
+        </div>
+        </transition>
+    </div>
+</body>
+</html>

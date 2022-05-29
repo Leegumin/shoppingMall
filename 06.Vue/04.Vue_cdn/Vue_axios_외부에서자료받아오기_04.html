@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- axios CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        window.onload = () => {
+            new Vue({
+                el: "#app",
+                data() {
+                    return {
+                        // 빈 데이터 정의
+                        list: []
+                    }
+                },
+                created() {
+                    // 서버에서 데이터 가져오기(임시로 윈도우를 서버라고 가정)
+                    // axios: ajax기술 기반 라이브러리
+                    // 비동기 통신인 promise 방식
+                    axios.get('../00.SOURCE/JSON/list.json') //JSON에서는 객체이름, 객체값 전부 ""안에 들어감(파일 참고)
+                        // 성공하면 list 배열에 넣기
+                        // 방법 1) .bind(this)를 넣어야 data this.list가 data의 list로 인식됨
+                        .then(function (response) {
+                            console.log(this);
+                            this.list = response.data;
+                            console.log(this.list);
+                        }.bind(this))
+
+                        // 방법 2)혹은 화살표 함수로 사용
+                        // .then((response) => {
+                        //     this.list = response.data;
+                        //     console.log(this);
+                        // })
+
+                        // 실패하면 콘솔에 에러 출력
+                        .catch(function (error) {
+                            console.log(error)
+                        })
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item, index) in list" :key="item.id">
+                ID. {{ item.id }} {{ item.name }} {{ item.hp }}
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
