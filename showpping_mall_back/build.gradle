@@ -40,6 +40,10 @@ dependencies {
     implementation 'com.oracle.database.security:oraclepki:19.14.0.0'
     implementation 'com.oracle.database.security:osdt_cert:19.14.0.0'
     implementation 'com.oracle.database.security:osdt_core:19.14.0.0'
+
+    // BCryptPasswordEncoder
+//    implementation 'org.springframework.boot:spring-boot-starter-security'
+//    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 }
 
 tasks.named('test') {

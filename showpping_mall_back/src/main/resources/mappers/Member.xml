@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace = "com.example.showpping_mall_back.dao.MemberDao">
+
+  <!--*회원가입, Create, insertTutorial 메소드에 값이 정상적으로 들어가면 그 값을 받아 쿼리문을 실행함-->
+    <insert id = "registerMember"
+            parameterType = "com.example.showpping_mall_back.model.Member">
+        INSERT INTO MEMBER(USER_ID,
+                           USER_PASSWORD,
+                           USER_NAME,
+                           USER_PHON)
+        VALUES (#{userId},
+                #{userPassword},
+                #{userName},
+                #{userPhon})
+    </insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

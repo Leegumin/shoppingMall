@@ -28,8 +28,8 @@ public interface TutorialService {
     public List<Tutorial> findAll();
 
     // 서비스 메소드
-    // *insert&update 같이 구성되는 메소드
-    // *참 거짓 값을 넘겨
+    // *insert&update와 같이 구성되는 메소드
+    // *참 거짓 값을 넘겨줌
     public boolean save(Tutorial tutorial);
 
     public boolean deleteById(Long id);
