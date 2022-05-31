@@ -2,7 +2,7 @@
 
 --회원 데이터
 CREATE TABLE MEMBER ( --테이블 이름
-    USER_ID       NUMBER PRIMARY KEY, --아이디 PRIMARY KEY : 값의 증복, NULL값 입력을 방지
+    USER_ID       VARCHAR2(50) PRIMARY KEY, --아이디 PRIMARY KEY : 값의 증복, NULL값 입력을 방지
     USER_PASSWORD VARCHAR2(100), --비밀번호
     USER_NAME     VARCHAR2(30) NOT NULL, -- 이름
     USER_PHON     VARCHAR2(20) NOT NULL, --전화번호
@@ -44,5 +44,5 @@ CREATE SEQUENCE GOODS_SEQ;
 
 --회원가입 테스트
 INSERT INTO MEMBER(USER_ID, USER_PASSWORD, USER_NAME, USER_PHON)
-VALUES (1, '비밀번호', '닉네임', '전화번호')
+VALUES ('아이디', '비밀번호', '닉네임', '전화번호')
 
