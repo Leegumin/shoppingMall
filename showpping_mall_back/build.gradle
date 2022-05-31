@@ -35,6 +35,8 @@ dependencies {
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+
+
     // 오라클서버 데이터베이스와 연결하기 위한 라이브러리
     implementation 'com.oracle.database.jdbc:ucp:19.14.0.0'
     implementation 'com.oracle.database.security:oraclepki:19.14.0.0'
@@ -42,8 +44,8 @@ dependencies {
     implementation 'com.oracle.database.security:osdt_core:19.14.0.0'
 
     // BCryptPasswordEncoder
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.6.7'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE'
 }
 
 tasks.named('test') {
