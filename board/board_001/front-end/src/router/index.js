@@ -14,9 +14,9 @@ const routes = [
     component: () => import('@/components/HomeCom'),
   },
   {
-    path     : '/complain',
-    name     : 'complain',
-    component: () => import('@/views/ComplainView'),
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/RegisterView')
   },
   {
     path     : '/tutorials',
@@ -42,7 +42,11 @@ const routes = [
     name     : 'upload',
     component: () => import('@/components/UploadImage'),
   },
-
+  {
+    path     : '*',
+    name     : 'notfound',
+    component: () => import('@/views/NotFound'),
+  },
 ]
 
 const router = new VueRouter({
