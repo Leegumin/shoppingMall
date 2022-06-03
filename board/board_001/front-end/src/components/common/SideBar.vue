@@ -1,27 +1,26 @@
 <template>
   <div>
     <!--사이드바-->
-    <aside class = "container-fluid">
-      <div class = "row flex-nowrap">
-        <div class = "col-3 bd-sidebar">
-          <ul class = "nav">
-            <div>
-              <h5>카테고리</h5>
-              <ul class = "nav">
-                <li><a>Side 1</a></li>
-              </ul>
-            </div>
-            <li><a>Side 2</a></li>
-            <li><a>Side 3</a></li>
-            <li><a>Side 4</a></li>
-            <li><a>Side 5</a></li>
-            <li><a>Side 6</a></li>
-            <li><a>Side 7</a></li>
-            <li><a>Side 8</a></li>
-          </ul>
-        </div>
-      </div>
-    </aside>
+    <div class="col-3 bd-sidebar">
+      <ul class="nav">
+        <li><a>Side 1</a></li>
+        <li><a>Side 2</a></li>
+        <li><a>Side 3</a></li>
+        <li><a>Side 4</a></li>
+        <li><a>Side 5</a></li>
+        <li><a>Side 6</a></li>
+        <li><a>Side 7</a></li>
+        <li><a>Side 8</a></li>
+      </ul>
+
+      <!--대메뉴-->
+      <h5>카테고리</h5>
+      <!-- 소메뉴 -->
+      <ul class="nav">
+        <li><a href = "#">데이터</a></li>
+      </ul>
+
+    </div>
     <!-- 오른쪽 사이드 메뉴 -->
     <aside id = "main-aside">
       <!-- 첫 번째 대메뉴 -->
