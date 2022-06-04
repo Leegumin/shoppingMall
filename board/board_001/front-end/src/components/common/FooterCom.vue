@@ -1,11 +1,13 @@
 <template>
-  <footer id="main-footer">
-    <a href="#">Created By Mingu </a>
-  </footer>
+  <div class = "bd-sidebar-footer">
+    <footer id = "main-footer">
+      <a href = "#">Created By Mingu </a>
+    </footer>
+  </div>
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style>

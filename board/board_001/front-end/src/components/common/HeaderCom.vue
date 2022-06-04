@@ -1,14 +1,19 @@
 <template>
-  <header id="main-header">
+  <header id = "main-header"
+  >
     <hgroup>
-      <h1 class="master-title">밍구의 공간에 오신것을 환영합니다!</h1>
+      <h1 class = "master-title">밍구의 공간에 오신것을 환영합니다!</h1>
     </hgroup>
   </header>
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style>
+#main-header{
+  background-image: url("../../assets/images/header.jpg");
+  padding-bottom: 500px;
+}
 </style>
