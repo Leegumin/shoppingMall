@@ -1,30 +1,33 @@
 <template>
   <!-- * bootstrap dropdown 적용 -->
-  <header class = "navbar navbar-expand navbar-dark bg-dark bd-navbar">
+  <div>
     <nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
-      <router-link to = "/"
+      <router-link to = "/home"
                    class = "navbar-brand"
-      >Menu
+      >
+        NOSINSA
       </router-link>
       <button class = "navbar-toggler"
               type = "button"
               data-toggle = "collapse"
-              data-target = "#navbarNavDropdown"
-              aria-controls = "navbarNavDropdown"
+              data-target = "#navbarSupportedContent"
+              aria-controls = "navbarSupportedContent"
               aria-expanded = "false"
               aria-label = "Toggle navigation"
       >
         <span class = "navbar-toggler-icon"></span>
       </button>
+
       <div class = "collapse navbar-collapse"
-           id = "navbarNavDropdown"
+           id = "navbarSupportedContent"
       >
-        <ul class = "navbar-nav">
-          <!-- * dropdown #1 -->
-          <li class = "nav-item dropdown">
+        <ul class = "navbar-nav mr-auto">
+          <!-- * dropdown #1 시작-->
+          <li class = "nav-item dropdown active">
             <a class = "nav-link dropdown-toggle"
                href = "#"
-               id = "navbarDropdownMenuLink"
+               id = "navbarDropdown"
+               role = "button"
                data-toggle = "dropdown"
                aria-haspopup = "true"
                aria-expanded = "false"
@@ -32,25 +35,26 @@
               About
             </a>
             <div class = "dropdown-menu"
-                 aria-labelledby = "navbarDropdownMenuLink"
+                 aria-labelledby = "navbarDropdown"
             >
-              <router-link to = "/home"
+              <router-link to = "#"
                            class = "dropdown-item"
               >
-                Home
+                #
               </router-link>
-              <router-link to = "/register"
-                           class = "dropdown-item"
-              >
-                Register
-              </router-link>
+              <!--              <div class = "dropdown-divider"></div>
+                            <a class = "dropdown-item"
+                               href = "#"
+                            >Something else here</a>-->
             </div>
           </li>
-          <!-- * dropdown #2 -->
-          <li class = "nav-item dropdown">
+          <!-- * dropdown #1 끝-->
+          <!-- * dropdown #2 시작-->
+          <li class = "nav-item dropdown active">
             <a class = "nav-link dropdown-toggle"
                href = "#"
-               id = "navbarDropdownMenuLink"
+               id = "navbarDropdown"
+               role = "button"
                data-toggle = "dropdown"
                aria-haspopup = "true"
                aria-expanded = "false"
@@ -58,7 +62,7 @@
               Tutorial Menu
             </a>
             <div class = "dropdown-menu"
-                 aria-labelledby = "navbarDropdownMenuLink"
+                 aria-labelledby = "navbarDropdown"
             >
               <router-link to = "/tutorials"
                            class = "dropdown-item"
@@ -75,13 +79,41 @@
               >
                 Upload Image
               </router-link>
+              <!--              <div class = "dropdown-divider"></div>
+                            <a class = "dropdown-item"
+                               href = "#"
+                            >Something else here</a>-->
             </div>
           </li>
+          <!-- * dropdown #2 끝-->
+          <!-- * 회원가입 시작-->
+          <li class = "nav-item active">
+            <router-link to = "/register"
+                         class = "nav-link"
+            >
+              회원가입 <span class = "sr-only">(current)</span>
+            </router-link>
+          </li>
+          <!-- * 회원가입 끝-->
         </ul>
+        <!--* 검색창 시작-->
+        <form class = "form-inline my-2 my-lg-0">
+          <input class = "form-control mr-sm-2"
+                 type = "search"
+                 placeholder = "Search"
+                 aria-label = "Search"
+          >
+          <button class = "btn btn-outline-info my-2 my-sm-0"
+                  type = "submit"
+          ><i class = "fa fa-search"
+              aria-hidden = "true"
+          ></i>
+          </button>
+        </form>
+        <!--* 검색창 끝-->
       </div>
     </nav>
-  </header>
-
+  </div>
 </template>
 
 <script>

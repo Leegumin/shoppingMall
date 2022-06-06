@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class = "row justify-content-md-center">
-      <div class = "col-md-12">
+      <div class = "col-md-10">
         <section id = "main-section">
           <article>
             <div class = "article-header">
