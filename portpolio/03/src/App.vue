@@ -2,7 +2,8 @@
 
 <template>
   <div id = "app">
-    <NavView></NavView>
+    <!-- * bootstrap dropdown 적용 -->
+    <!--p(padding), m(margin)/l(left), r(right), t(top), b(bottom)-1~5-->
     <!--<div class = "container mt-3">-->
     <!-- 위의 router-link에 있는 메뉴 화면이 아래 위치에 표시 -->
     <router-view></router-view>
@@ -11,12 +12,9 @@
 </template>
 
 <script>
-import NavView from '@/views/NavView'
-
 export default {
   components: {
-    NavView,
-  },
+  }
 }
 </script>
 
