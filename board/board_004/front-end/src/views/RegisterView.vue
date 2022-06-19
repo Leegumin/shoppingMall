@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import RegisterCom from "@/components/RegisterCom.vue"
+import RegisterCom from "@/components/user/RegisterCom.vue"
 
 export default {
   name: 'RegisterView',
