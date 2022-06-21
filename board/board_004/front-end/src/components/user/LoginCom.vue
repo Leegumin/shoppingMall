@@ -14,7 +14,7 @@
           <input type = "email"
                  class = "form-control border-dark mb-1 rounded-2"
                  id = "floatingInput"
-                 placeholder = "name@example.com"
+                 placeholder = "Email address"
           >
           <label for = "floatingInput">Email address</label>
         </div>
