@@ -125,7 +125,7 @@
                                  class = "dropdown-item"
                     >Login
                     </router-link>
-                    <router-link to = "#"
+                    <router-link to = "/register"
                                  class = "dropdown-item"
                     >Register
                     </router-link>
