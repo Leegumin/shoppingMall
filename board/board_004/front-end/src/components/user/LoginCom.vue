@@ -1,6 +1,6 @@
 <template>
   <div id = "body"
-       class = "text-center mx-auto"
+       class = "text-center mx-auto vh-100"
   >
     <main class = "form-signin bg-white vh-100">
       <!--브랜드 로고 및 메인 바로가기 시작-->
