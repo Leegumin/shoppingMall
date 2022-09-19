@@ -1,5 +1,0 @@
-npm install -g @vue/cli
-vue 2.0버전 설정
-vue create 프로젝트 이름
-cd 프로젝트 폴더 이름
-npm run serve

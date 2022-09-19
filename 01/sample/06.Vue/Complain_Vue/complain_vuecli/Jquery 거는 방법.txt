@@ -1,5 +1,0 @@
-만약 Jquery를 걸어야한다면
-
-public의 index에 Jquery cdn을 걸고
-
-main.js 에 import로 js 넣어주면 됨
