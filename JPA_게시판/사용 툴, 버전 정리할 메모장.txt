@@ -1,0 +1,6 @@
+OS : Window 10
+Tool : IntelliJ
+언어 : Java, JPA
+DB : MySQL
+버전관리 : Git
+FrameWork : SpringBoot 2.7.3

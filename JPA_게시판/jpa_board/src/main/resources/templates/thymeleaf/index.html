@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang = "ko"
+      xmlns:th = "http://www.thymeleaf.org"
+>
+<head>
+    <meta charset = "UTF-8">
+    <title>Main</title>
+</head>
+<body>
+    <button onclick="location.href = '/jpa/boardList'">JPA Board List</button>
+    <button onclick="location.href = '/jpa/boardWrite'">JPA Board Write</button>
+</body>
+
+<style>
+    /* 페이지 전체 초기화 */
+    * {
+        margin: 0;
+    }
+
+    /* main 정의 */
+    body {
+        /* 너비 높이 비율 적용 */
+        width: 100vw;
+        height: 100vh;
+
+        /* 정렬 */
+        display: flex;
+        /* 가운데 정렬(가로) */
+        justify-content: center;
+        /* 가운데 정렬(세로) */
+        align-items: center;
+        /* 자식요소 수직 정렬 */
+        flex-direction: column;
+    }
+
+    /* 버튼 스타일 */
+    body > button {
+        width: 300px;
+        height: 70px;
+        color: white;
+        background: #bdbdbd;
+        padding: 20px 40px;
+        border-radius: 100px;
+        border: none;
+        font-size: 1em;
+        cursor: pointer;
+        margin: 10px 0;
+    }
+
+    /* *nth-child(순서(인덱스 말고), 혹은 짝수홀수(짝수 : even or 2n, 홀수 : odd or n) 등등)*/
+    body > button:nth-child(2) {
+        background: #6a6a6e;
+    }
+</style>
+</html>
