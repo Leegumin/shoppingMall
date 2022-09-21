@@ -6,9 +6,15 @@ import com.example.jpa_board.repository.BoardRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.lang.reflect.Member;
 
 /**
  * packageName : com.example.jpa_board.controller
@@ -31,7 +37,6 @@ public class BoardController {
     public BoardController(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
-
 
 
     // 글쓰기&수정 Form
@@ -87,10 +92,31 @@ public class BoardController {
         }
         return "redirect:/";
     }
-    
+
     // 글 조회
     @GetMapping("/BoardList")
-    public String BoardList(){
+    public String BoardList(Model model,
+                            @PageableDefault(size = 10, sort = "createdDate", direction = Sort.Direction.ASC)
+                            Pageable pageable,
+                            @RequestParam(value = "searchKeyword", required = false, defaultValue = "")
+                            String searchKeyword) {
+        // *변수 초기화
+        Page<Board> boards = null;
+
+        // searchKeyword가 없을 때 전체 조회
+        if (searchKeyword.isEmpty()) {
+            logger.info("전체 조회");
+            boards = boardRepository.findAll(pageable);
+        }
+        // searchKeyword가 있을 때 검색 조회
+        else {
+            logger.info("검색(제목&내용) 조회");
+            boards = boardRepository.findByTitleOrContentContains(searchKeyword, searchKeyword, pageable);
+        }
+
+        model.addAttribute("boards", boards);
+        model.addAttribute("searchKeyword", searchKeyword);
+
         return "jpa/boardList";
     }
 }

@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset = "UTF-8">
     <title>Board List</title>
 </head>
 <body>
-
+    <div>
+        <h2>Board List</h2>
+        <p>
+            <a href = "/">Main</a>
+            / 현재 <span style="font-weight: bold" th:text="${#lists.size(boards)}"></span> 명의 게시글이 등록되었습니다.
+        </p>
+    </div>
 </body>
 </html>
