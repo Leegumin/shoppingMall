@@ -94,7 +94,7 @@ public class BoardController {
     }
 
     // 글 조회
-    @GetMapping("/BoardList")
+    @GetMapping("/boardList")
     public String BoardList(Model model,
                             @PageableDefault(size = 10, sort = "createdDate", direction = Sort.Direction.ASC)
                             Pageable pageable,

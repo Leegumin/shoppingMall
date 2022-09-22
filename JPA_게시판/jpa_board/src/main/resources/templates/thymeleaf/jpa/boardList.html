@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang = "ko"
+      xmlns:th = "http://www.thymeleaf.org"
+>
 <head>
     <meta charset = "UTF-8">
     <title>Board List</title>
@@ -9,8 +11,100 @@
         <h2>Board List</h2>
         <p>
             <a href = "/">Main</a>
-            / 현재 <span style="font-weight: bold" th:text="${#lists.size(boards)}"></span> 명의 게시글이 등록되었습니다.
         </p>
+        <form th:action = "@{/jpa/boardList}"
+              method = "get"
+              style = "padding: 10px; border: 1px; width: 600px"
+              id = "searchKeywordForm"
+        >
+            <label for = "searchKeyword">제목&내용 검색</label>
+            <!-- *autocomplete : 앞에서 입력한 값 자동완성 조정 -->
+            <input type = "text"
+                   id = "searchKeyword"
+                   name = "searchKeyword"
+                   placeholder = "검색"
+                   autocomplete = "off"
+            >
+            <button type = "submit">Search</button>
+        </form>
+        <table cellpadding = "10"
+               border = "1"
+               style="table-layout: fixed"
+        >
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Writer</th>
+                <th>CreateDate</th>
+                <th>ModifiedDate</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "board : ${boards}">
+                <td th:text = "${board.id}"></td>
+                <td>
+                    <a th:href = "@{/jpa/boardDetail(id = ${board.id})}"
+                       th:text = "${board.title}"
+                    ></a>
+                </td>
+                <td th:text = "${board.content}" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; display: block" width="110"></td>
+                <td th:text = "${board.writer}"></td>
+                <td th:text = "${board.createdDate}"></td>
+                <td th:text = "${board.modifiedDate}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
+    <p>
+        총 게시글 <span style = "color: red; font-weight: bold"
+                       th:text = "${boards.totalElements}"
+    ></span><br>
+        현재 페이지 <span style = "color: green; font-weight: bold"
+                     th:text = "${boards.pageable.pageNumber+1}"
+    ></span>
+        총 페이지 <span style = "color: blue; font-weight: bold"
+                    th:text = "${boards.totalPages}"
+    ></span>
+    </p>
+    <ul>
+        <!--뒤로 가기-->
+        <li th:if = "${boards.number == 0}">
+            <span style = "color: #999;">Previous</span>
+        </li>
+        <li th:unless = "${boards.number == 0}">
+            <a href = "#"
+               th:href = "@{/jpa/boardList(page=${boards.number -1}, searchKeyword = ${searchKeyword})}"
+            >Previous</a>
+        </li>
+        <!--뒤로 가기 끝-->
+        <li>/</li>
+        <!--앞으로 가기-->
+        <li th:if = "${boards.totalPages == boards.number +1}">
+            <span style = "color: #999;">Next</span>
+        </li>
+        <li th:unless = "${boards.totalPages == boards.number +1}">
+            <a href = "#"
+               th:href = "@{/jpa/boardList(page=${boards.number +1}, searchKeyword = ${searchKeyword})}"
+            >Next</a>
+        </li>
+    </ul>
 </body>
+<style>
+    ul>li {
+        display: inline-block;
+        border: 0 solid;
+        padding: 10px;
+    }
+
+    ul {
+        margin-left: -50px;
+    }
+
+    #searchKeywordForm {
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
 </html>
