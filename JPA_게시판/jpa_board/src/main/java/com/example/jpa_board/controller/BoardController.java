@@ -131,16 +131,16 @@ public class BoardController {
         Page<Board> boards = null;
 
         // searchKeyword가 없을 때 전체 조회
-        // TODO : DeleteYn이 'N'인 게시글만 조회로 수정
         if (searchKeyword.isEmpty()) {
             logger.info("전체 조회");
-            boards = boardRepository.findAll(pageable);
+            /*boards = boardRepository.findAll(pageable);*/
+            boards = boardRepository.findByAllExceptY(pageable);
         }
         // searchKeyword가 있을 때 검색 조회
         // TODO : DeleteYn이 'N'인 게시글만 조회로 수정
         else {
             logger.info("검색(제목&내용) 조회");
-            boards = boardRepository.findByTitleOrContentContains(searchKeyword, searchKeyword, pageable);
+            boards = boardRepository.findByTitleOrContentExceptY(searchKeyword, pageable);
         }
 
         model.addAttribute("boards", boards);
@@ -158,8 +158,12 @@ public class BoardController {
 
         // *id(pk)에 해당하는 회원 조회
         Board board = boardRepository.findById(id).orElse(null);
-        model.addAttribute("board", board);
 
+        // *조회수를 1씩 올림 (update(save)를 실행하지 않으면 DB에 저장 안됨)
+        board.setHits(board.getHits()+1);
+        boardRepository.save(board);
+
+        model.addAttribute("board", board);
         return "jpa/boardDetail";
     }
 

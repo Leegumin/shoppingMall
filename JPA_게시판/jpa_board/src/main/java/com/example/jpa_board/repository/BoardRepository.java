@@ -4,6 +4,8 @@ import com.example.jpa_board.entity.Board;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  * packageName : com.example.jpa_board.repository
@@ -20,5 +22,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
     // 제목&내용 검색
-    Page<Board> findByTitleOrContentContains(String title, String content, Pageable pageable);
+    @Query("select b from Board b where (b.deleteYn='N') and (b.title like %:searchKeyword%) or (b.content like %:searchKeyword%)")
+    Page<Board> findByTitleOrContentExceptY(@Param("searchKeyword") String searchKeyword, Pageable pageable);
+
+    // delete_yn이 'Y'(삭제된 글)인 것을 제외하고 조회, entity의 이름을 테이블 명으로 사용함
+    @Query("select b from Board b where b.deleteYn ='N'")
+    Page<Board> findByAllExceptY(Pageable pageable);
 }
