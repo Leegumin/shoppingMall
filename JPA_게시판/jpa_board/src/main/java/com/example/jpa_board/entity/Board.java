@@ -45,9 +45,9 @@ public class Board {
     @Column
     private int    hits; // 조회수
     @Column
-    private char   deleteYn = 'N'; // 삭제여부
+    private char   deleteYn; // 삭제여부
     @Column
-    private String createdDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")); // 글쓴 날짜
+    private String createdDate; // 글쓴 날짜
     @Column
     private String modifiedDate; // 글 수정한 날짜
 
