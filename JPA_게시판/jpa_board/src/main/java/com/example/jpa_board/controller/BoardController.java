@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -73,6 +74,7 @@ public class BoardController {
     // 글쓰기&수정 등록
     @PostMapping("/boardWrite")
     public String boardWriteSaveUpdate(Model model,
+                                       @Validated
                                        @ModelAttribute
                                        BoardDto boardDto) {
         logger.info("boardWriteSaveUpdate 실행됨");

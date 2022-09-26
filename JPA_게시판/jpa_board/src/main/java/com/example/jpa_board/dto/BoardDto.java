@@ -2,6 +2,9 @@ package com.example.jpa_board.dto;
 
 import com.example.jpa_board.entity.Board;
 import lombok.Data;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * packageName : com.example.jpa_board.dto
@@ -17,8 +20,11 @@ import lombok.Data;
 @Data
 public class BoardDto {
     private Long   id;
+    @NotBlank
     private String title;
+    @NotBlank
     private String content;
+    @NotBlank
     private String writer;
 
 

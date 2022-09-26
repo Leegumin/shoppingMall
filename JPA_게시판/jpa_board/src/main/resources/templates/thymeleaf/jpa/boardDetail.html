@@ -5,41 +5,89 @@
 <head>
     <meta charset = "UTF-8">
     <title>Board Detail</title>
+
+    <!--BootStrap5-->
+    <link rel = "stylesheet"
+          href = "/css/bootstrap.min.css"
+    />
+    <script src = "/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h2>Board Detail</h2>
-    <p><a href = "#"
-          onclick = "history.back(); return false;"
-          style = "text-decoration: none"
-    >← Back</a> / 아래는 <span th:text = "${board.id}"></span>번 게시글입니다.</p>
+    <header th:insert = "jpa/common/header"></header>
+    <div class = "container">
+        <form th:action = "@{/jpa/boardWrite}"
+              th:object = "${board}"
+              method = "post"
+              id = "write_update"
+        >
+            <!--서버로 보내기 위한 id 값-->
+            <div class = "form-group row">
+                <label for = "id"
+                       class = "col-sm-2 col-form-label"
+                ><strong>글 번호</strong></label>
+            </div>
+            <div class = "col-sm-10">
+                <input type = "text"
+                       id = "id"
+                       th:field = "*{id}"
+                       class = "form-control"
+                       readonly
+                >
+            </div>
+            <div class = "form-group row">
+                <label for = "title"
+                       class = "col-sm-2 col-form-label"
+                ><strong>제목</strong></label>
+            </div>
+            <div class = "col-sm-10">
+                <input type = "text"
+                       id = "title"
+                       th:field = "*{title}"
+                       class = "form-control"
+                       readonly
+                >
+            </div>
+            <div class = "form-group row">
+                <label for = "writer"
+                       class = "col-sm-2 col-form-label"
+                ><strong>작성자</strong></label>
+            </div>
+            <div class = "col-sm-10">
+                <input type = "text"
+                       id = "writer"
+                       th:field = "*{writer}"
+                       class = "form-control"
+                       readonly
+                >
+            </div>
+            <div class = "form-group row">
+                <label for = "content"
+                       class = "col-sm-2 col-form-label"
+                ><strong>내용</strong></label>
+            </div>
+            <div class = "col-sm-10">
+                <textarea type = "text"
+                          id = "content"
+                          th:field = "*{content}"
+                          class = "form-control overflow-auto"
+                          style = "min-height: 30vh;"
+                          readonly
+                ></textarea>
+            </div>
 
-    <table th:object = "${board}"
-           cellpadding = "10"
-           border = "1"
-    >
-        <tr>
-            <th>Id</th>
-            <td th:text = "${board.id}"></td>
-        </tr>
-        <tr>
-            <th>Title</th>
-            <td th:text = "${board.title}"></td>
-        </tr>
-        <tr>
-            <th>Content</th>
-            <td th:text = "${board.content}"></td>
-        </tr>
-        <tr>
-            <th>Writer</th>
-            <td th:text = "${board.writer}"></td>
-        </tr>
-    </table>
-
-    <button th:onclick="'location.href =\'' + @{/jpa/boardWrite(id = ${board.id})} + '\''">수정</button>
-    <button th:id = "${board.id}"
-            onclick = "btnDel(this.getAttribute('id'))"
-    >삭제
-    </button>
+            <div class = "my-2 col-sm-10">
+                <div class = "float-end">
+                    <button th:onclick = "'location.href =\'' + @{/jpa/boardWrite(id = ${board.id})} + '\''"
+                    >수정
+                    </button>
+                    <button th:id = "${board.id}"
+                            onclick = "btnDel(this.getAttribute('id'))"
+                    >삭제
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 
 <script>
