@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang = "ko"
+      xmlns:th = "http://www.thymeleaf.org"
+>
+<head>
+    <meta charset = "UTF-8">
+    <title>Board Detail</title>
+</head>
+<body>
+    <h2>Board Detail</h2>
+    <p><a href = "#"
+          onclick = "history.back(); return false;"
+          style = "text-decoration: none"
+    >← Back</a> / 아래는 <span th:text = "${board.id}"></span>번 게시글입니다.</p>
+
+    <table th:object = "${board}"
+           cellpadding = "10"
+           border = "1"
+    >
+        <tr>
+            <th>Id</th>
+            <td th:text = "${board.id}"></td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td th:text = "${board.title}"></td>
+        </tr>
+        <tr>
+            <th>Content</th>
+            <td th:text = "${board.content}"></td>
+        </tr>
+        <tr>
+            <th>Writer</th>
+            <td th:text = "${board.writer}"></td>
+        </tr>
+    </table>
+
+    <button th:onclick="'location.href =\'' + @{/jpa/boardWrite(id = ${board.id})} + '\''">수정</button>
+    <button th:id = "${board.id}"
+            onclick = "btnDel(this.getAttribute('id'))"
+    >삭제
+    </button>
+</body>
+
+<script>
+    function btnDel (id) {
+        console.log(id)
+        if (confirm('게시글을 정말 삭제하시겠습니까?') === true) {
+            location.href = '/jpa/boardDelete?id=' + id
+        }
+    }
+</script>
+
+</html>
