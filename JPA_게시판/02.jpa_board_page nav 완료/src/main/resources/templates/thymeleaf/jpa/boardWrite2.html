@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang = "ko"
+      xmlns:th = "http://www.thymeleaf.org"
+>
+<head>
+    <meta charset = "UTF-8">
+    <title>Board Form</title>
+</head>
+<body>
+    <h1>
+        Board <span th:text = "${formTitle}"></span> Form
+    </h1>
+    <form th:action = "@{/jpa/boardWrite}"
+          th:object = "${boardDto}"
+          method = "post"
+          id = "write_update"
+    >
+        <!--서버로 보내기 위한 id 값-->
+        <input type = "hidden"
+               name = "id"
+               th:field = "*{id}"
+        >
+
+        <label for = "title">Title</label>
+        <input type = "text"
+               id = "title"
+               name = "title"
+               th:field = "*{title}"
+        >
+        <label for = "writer">Writer</label>
+        <input type = "text"
+               id = "writer"
+               name = "writer"
+               th:field = "*{writer}"
+        >
+        <label for = "content">Content</label>
+        <textarea id = "content"
+                  name = "content"
+                  th:field = "*{content}"
+        ></textarea>
+    </form>
+    <div th:switch="${formTitle}">
+        <button type = "submit"
+                form = "write_update"
+                th:case="Modification"
+        >글 수정</button>
+        <button type = "submit"
+                form = "write_update"
+                th:case="NewWrite"
+        >글 등록</button>
+    </div>
+
+</body>
+</html>

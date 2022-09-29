@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang = "ko"
+      xmlns:th = "http://www.thymeleaf.org"
+>
+<head>
+    <meta charset = "UTF-8">
+    <title>Board List</title>
+
+    <!--BootStrap5-->
+    <link rel = "stylesheet"
+          href = "/css/bootstrap.min.css"
+    />
+    <script src = "/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!--th:insert - vue의 component 개념-->
+    <header th:insert = "jpa/common/header"></header>
+
+    <div class = "container">
+        <!--검색-->
+        <form th:action = "@{/jpa/boardList}"
+              method = "get"
+              class = "float-end border-1 my-2"
+              id = "searchKeywordForm"
+        >
+            <label for = "searchKeyword"><strong>제목 & 내용 검색</strong></label>
+            <!-- *autocomplete : 앞에서 입력한 값 자동완성 조정 -->
+            <input type = "text"
+                   id = "searchKeyword"
+                   name = "searchKeyword"
+                   placeholder = "검색"
+                   autocomplete = "off"
+            >
+            <button type = "submit">Search</button>
+        </form>
+
+        <table class = "table">
+            <thead class = "thead-light">
+            <tr class = "text-center">
+                <th>글 번호</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>작성자</th>
+                <th>글쓴 날</th>
+                <th>수정한 날</th>
+                <th>조회수</th>
+            </tr>
+            </thead>
+            <tbody th:each = "board : ${boards}">
+            <tr class = "text-center">
+                <th>
+                    <span th:text = "${board.id}"></span>
+                </th>
+                <td>
+                    <span>
+                        <a th:href = "@{/jpa/boardDetail(id = ${board.id})}"
+                           th:text = "${board.title}"
+                        ></a>
+                    </span>
+                </td>
+                <td>
+                    <span th:text = "${board.content}"></span>
+                </td>
+                <td>
+                    <span th:text = "${board.writer}"></span>
+                </td>
+                <td>
+                    <span th:text = "${board.createdDate}"></span>
+                </td>
+                <td>
+                    <span th:text = "${board.modifiedDate}"></span>
+                </td>
+                <td>
+                    <span th:text = "${board.hits}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <p>
+                총 게시글 <span style = "color: red; font-weight: bold"
+                            th:text = "${boards.totalElements}"
+            ></span> /
+                현재 페이지 <span style = "color: green; font-weight: bold"
+                             th:text = "${nowPage}"
+            ></span> /
+                총 페이지 <span style = "color: blue; font-weight: bold"
+                            th:text = "${boards.totalPages}"
+            ></span>
+            </p>
+        </div>
+        <ul class = "pagination justify-content-center">
+            <!--처음-->
+            <li class = "page-item"
+            >
+                <a class = "page-link"
+                   href = "#"
+                   th:href = "@{/jpa/boardList(page=0, searchKeyword = ${searchKeyword})}"
+                >Start</a>
+            </li>
+            <!--처음 끝-->
+            <!--뒤로 가기-->
+            <li class = "page-item"
+                th:if = "${boards.number == 0}"
+            >
+                <span class = "page-link"
+                      style = "color: #999;"
+                >Previous</span>
+            </li>
+            <li class = "page-item"
+                th:unless = "${boards.number == 0}"
+            >
+                <a class = "page-link"
+                   href = "#"
+                   th:href = "@{/jpa/boardList(page=${boards.number -1}, searchKeyword = ${searchKeyword})}"
+                >Previous</a>
+            </li>
+            <!--뒤로 가기 끝-->
+            <!--페이지-->
+            <li class = "page-item"
+                th:each = "page:${#numbers.sequence(startPage, endPage)}"
+            >
+                <a class = "page-link"
+                   th:if = "${page != nowPage}"
+                   th:href = "@{/jpa/boardList(page=${page}-1)}"
+                   th:text = "${page}"
+                >
+                </a>
+                <strong class = "page-link"
+                        th:if = "${page == nowPage}"
+                        th:text = "${page}"
+                        style = "color: red"
+                >
+                </strong>
+            </li>
+            <!--페이지 끝-->
+            <!--앞으로 가기-->
+            <li class = "page-item"
+                th:if = "${boards.totalPages == boards.number +1}"
+            >
+                <span class = "page-link"
+                      style = "color: #999;"
+                >Next</span>
+            </li>
+            <li class = "page-item"
+                th:unless = "${boards.totalPages == boards.number +1}"
+            >
+                <a class = "page-link"
+                   href = "#"
+                   th:href = "@{/jpa/boardList(page=${boards.number +1}, searchKeyword = ${searchKeyword})}"
+                >Next</a>
+            </li>
+            <!--앞으로 가기 끝-->
+            <!--마지막-->
+            <li class = "page-item"
+            >
+                <a class = "page-link"
+                   href = "#"
+                   th:href = "@{/jpa/boardList(page=${boards.getTotalPages()-1}, searchKeyword = ${searchKeyword})}"
+                >End</a>
+            </li>
+            <!--마지막 끝-->
+        </ul>
+    </div>
+
+
+</body>
+<style>
+
+    ul {
+        margin-left: -50px;
+    }
+</style>
+</html>
